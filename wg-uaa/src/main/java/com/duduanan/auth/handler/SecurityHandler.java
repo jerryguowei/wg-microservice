@@ -32,7 +32,7 @@ public class SecurityHandler {
         return new DefaultWebResponseExceptionTranslator() {
             @Override
             public ResponseEntity<OAuth2Exception> translate(Exception e) throws Exception {
-                OAuth2Exception oAuth2Exception = new InvalidGrantException(e.getMessage(),e);
+                OAuth2Exception oAuth2Exception = new InvalidGrantException(e.getMessage(), e);
                 ResponseEntity<OAuth2Exception> response = super.translate(oAuth2Exception);
 
                 ResponseEntity.status(oAuth2Exception.getHttpErrorCode());
@@ -48,9 +48,10 @@ public class SecurityHandler {
         return new AuthenticationEntryPoint() {
             private String realmName = "Realm";
             private ObjectMapper objectMapper = new ObjectMapper();
+
             @Override
             public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
-                    throws IOException{
+                    throws IOException {
                 response.addHeader("WWW-Authenticate", "Basic realm=\"" + realmName + "\"");
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
                 Map<String, Object> errorAttributes = new LinkedHashMap<>();

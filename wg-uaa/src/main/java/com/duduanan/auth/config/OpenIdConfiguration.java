@@ -11,11 +11,11 @@ public class OpenIdConfiguration {
     private String revocationEndpoint;
 
     public OpenIdConfiguration(String issuer) {
-        if(!issuer.endsWith("/")) {
+        if (!issuer.endsWith("/")) {
             issuer += "/";
         }
         this.issuer = issuer;
-        this.authorizationEndpoint= issuer + "authorize";
+        this.authorizationEndpoint = issuer + "authorize";
         this.tokenEndPoint = issuer + "oauth/token";
         this.userinfoEndpoint = issuer + "userinfo";
         this.jwksUri = issuer + ".well-known/jwks.json";

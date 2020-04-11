@@ -20,10 +20,10 @@ public class SysUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         SysUser user = userRepository.findByUsername(username);
-        if(user != null) {
+        if (user != null) {
             UserDetails userDetails = new SysUserDetail(user);
 
-            if(!userDetails.isEnabled()){
+            if (!userDetails.isEnabled()) {
                 throw new DisabledException("user is disabled.");
             }
             return userDetails;

@@ -39,7 +39,6 @@ public class OauthController {
     }
 
 
-
     @GetMapping("/.well-known/jwks.json")
     public Map<String, Object> getKey() {
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
@@ -57,7 +56,7 @@ public class OauthController {
 
     public ResponseEntity<String> exhangeToken(@RequestParam("access_token") Optional<String> accessToken) {
 
-        if(!accessToken.isPresent()) {
+        if (!accessToken.isPresent()) {
             throw new InternalAuthenticationServiceException("access_token is required");
         }
 

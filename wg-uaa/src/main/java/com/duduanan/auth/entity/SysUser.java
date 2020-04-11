@@ -36,7 +36,7 @@ public class SysUser {
     private Date updateDate;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinTable(name = "sys_user_user_role", joinColumns = {@JoinColumn(name="user_id")}, inverseJoinColumns = {@JoinColumn(name="role_id")})
+    @JoinTable(name = "sys_user_user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<UserRole> authorityRoles = new ArrayList<>();
 
     public long getId() {

@@ -27,10 +27,10 @@ public class RedisClientDetailsService implements ClientDetailsService {
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
 
         ClientDetails clientDetails = (ClientDetails) redisTemplate.opsForValue().get(clientRedisKey(clientId));
-        if(clientDetails == null){
+        if (clientDetails == null) {
             clientDetails = getClientAndCache(clientId);
         }
-        if(clientDetails == null){
+        if (clientDetails == null) {
             throw new NoSuchClientException("client id and password is invalid.");
         }
         return clientDetails;
@@ -43,7 +43,7 @@ public class RedisClientDetailsService implements ClientDetailsService {
 
     private ClientDetails getClientAndCache(String clientId) {
         AuthClient authClient = clientRepository.findAuthClientByClientId(clientId);
-        if(authClient != null) {
+        if (authClient != null) {
             ClientDetails clientDetails = new SysClientDetail(authClient);
             redisTemplate.opsForValue().set(clientRedisKey(clientId), clientDetails);
             logger.info("cache clientId:{}, {}", clientId, clientDetails);

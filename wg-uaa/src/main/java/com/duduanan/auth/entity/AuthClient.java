@@ -44,7 +44,7 @@ public class AuthClient {
     private boolean autoApprove;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinTable(name = "auth_client_client_role", joinColumns = {@JoinColumn(name="client_id")}, inverseJoinColumns = {@JoinColumn(name="role_id")})
+    @JoinTable(name = "auth_client_client_role", joinColumns = {@JoinColumn(name = "client_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<ClientRole> clientRoles = new ArrayList<>();
 
     public int getId() {

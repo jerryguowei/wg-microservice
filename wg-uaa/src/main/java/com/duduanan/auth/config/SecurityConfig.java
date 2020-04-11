@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-       auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
 
@@ -68,6 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Auth Server use client details as the user details,
      * As It's used by the client to fetch token.
+     *
      * @return
      */
     public UserDetailsService userDetailsService() {

@@ -26,15 +26,15 @@ public class AccessTokenExchangeJwtService {
 
     public String exhangeJwt(String tokenValue) throws InternalAuthenticationServiceException {
         OAuth2AccessToken jwtObject = (OAuth2AccessToken) redisTemplate.opsForValue().get(tokenRedisKey(tokenValue));
-        if(jwtObject != null){
+        if (jwtObject != null) {
             return jwtObject.getValue();
         }
 
         OAuth2AccessToken accessToken = tokenStore.readAccessToken(tokenValue);
         OAuth2Authentication authentication = tokenStore.readAuthentication(tokenValue);
 
-        if(accessToken != null && authentication != null) {
-            if(accessToken.isExpired()) {
+        if (accessToken != null && authentication != null) {
+            if (accessToken.isExpired()) {
                 throw new InternalAuthenticationServiceException("token is expired.");
             }
 
@@ -46,7 +46,7 @@ public class AccessTokenExchangeJwtService {
     }
 
 
-    private String tokenRedisKey(String tokenValue){
+    private String tokenRedisKey(String tokenValue) {
         return AuthConstant.TOKEN_TO_JWT + ":" + tokenValue;
     }
 

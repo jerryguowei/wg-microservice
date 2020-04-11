@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: auth-server
+  cloud:
+    config:
+      uri: http://localhost:8888
+  profiles:
+    active: dev
 
 encrypt:
   key-store:
