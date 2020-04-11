@@ -1,0 +1,12 @@
+server:
+  port: 8100
+
+spring:
+  application:
+    name: auth-server
+
+encrypt:
+  key-store:
+    location: classpath:mykeystore.jks
+    alias: mykey
+    password: password
