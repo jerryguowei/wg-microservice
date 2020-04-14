@@ -20,10 +20,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
@@ -65,5 +61,6 @@
 		<module>wg-uaa</module>
 		<module>wg-config</module>
 		<module>wg-eureka</module>
+		<module>wg-gateway</module>
 	</modules>
 </project>
