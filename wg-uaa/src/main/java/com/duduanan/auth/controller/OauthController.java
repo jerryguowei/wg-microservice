@@ -54,7 +54,7 @@ public class OauthController {
 
     @RequestMapping(value = "/.well-known/exchange_token")
 
-    public ResponseEntity<String> exhangeToken(@RequestParam("access_token") Optional<String> accessToken) {
+    public String exhangeToken(@RequestParam("access_token") Optional<String> accessToken) {
 
         if (!accessToken.isPresent()) {
             throw new InternalAuthenticationServiceException("access_token is required");
@@ -62,6 +62,6 @@ public class OauthController {
 
         String jwtToken = accessTokenExchangeJwtService.exhangeJwt(accessToken.get());
 
-        return ResponseEntity.status(HttpStatus.OK).body(jwtToken);
+        return jwtToken;
     }
 }

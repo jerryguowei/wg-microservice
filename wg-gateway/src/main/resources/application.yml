@@ -17,6 +17,8 @@ management:
       show-details: always
     beans:
       enabled: true
+
+
 spring:
   cloud:
     gateway:
@@ -28,3 +30,12 @@ spring:
           filters:
             - StripPrefix=1
             - PreserveHostHeader
+            - name: RequestRateLimiter
+              args:
+                  redis-rate-limiter.replenishRate: 10
+                  redis-rate-limiter.burstCapacity: 20
+                  redis-rate-limiter.requestedTokens: 1
+
+wg:
+  client_id: front-end
+  client_secret: password
