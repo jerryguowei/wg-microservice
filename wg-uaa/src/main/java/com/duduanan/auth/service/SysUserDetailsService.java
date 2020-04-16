@@ -1,7 +1,7 @@
 package com.duduanan.auth.service;
 
-import com.duduanan.auth.entity.SysUser;
 import com.duduanan.auth.repository.SysUserRepository;
+import com.duduanan.commons.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;

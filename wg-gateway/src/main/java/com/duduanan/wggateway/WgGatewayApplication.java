@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.PreDestroy;
+
 @SpringBootApplication
 @EnableFeignClients
 //@Import(HttpMessageConvertersAutoConfiguration.class)
@@ -29,6 +31,11 @@ public class WgGatewayApplication {
     @Bean
     public GlobalFilter customFilter(){
         return new CustomGlobalFilter();
+    }
+
+    @PreDestroy
+    public void onExist() {
+        System.out.println("start close application");
     }
 
 }

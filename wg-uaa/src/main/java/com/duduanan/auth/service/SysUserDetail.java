@@ -1,6 +1,6 @@
 package com.duduanan.auth.service;
 
-import com.duduanan.auth.entity.SysUser;
+import com.duduanan.commons.entity.SysUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

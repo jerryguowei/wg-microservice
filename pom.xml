@@ -62,5 +62,6 @@
 		<module>wg-config</module>
 		<module>wg-eureka</module>
 		<module>wg-gateway</module>
+		<module>wg-usercenter</module>
 	</modules>
 </project>

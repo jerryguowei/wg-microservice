@@ -35,7 +35,18 @@ spring:
                   redis-rate-limiter.replenishRate: 10
                   redis-rate-limiter.burstCapacity: 20
                   redis-rate-limiter.requestedTokens: 1
+        - id: user
+          uri: lb://wg-usercenter
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1
+            - PreserveHostHeader
+
 
 wg:
   client_id: front-end
   client_secret: password
+#logging:
+#  level:
+#    ROOT: DEBUG

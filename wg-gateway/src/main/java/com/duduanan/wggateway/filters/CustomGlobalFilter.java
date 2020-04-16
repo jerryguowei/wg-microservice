@@ -23,7 +23,8 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
         List<String> authorizationHeaderList = exchange.getRequest().getHeaders().get("Authorization");
-        if(authorizationHeaderList.isEmpty()
+        if(authorizationHeaderList == null
+                || authorizationHeaderList.isEmpty()
                 || authorizationHeaderList.size() > 1
                 || !authorizationHeaderList.get(0).startsWith("Bearer")) {
             return chain.filter(exchange);
@@ -36,7 +37,9 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         } catch (FeignException ex) {
             ex.printStackTrace();
         }
-        ServerHttpRequest request  = exchange.getRequest().mutate().header("Authorization", jwtToken).build();
+
+        //TODO: when have exception, just return 401 at this place instead of pass to downstream services.
+        ServerHttpRequest request  = exchange.getRequest().mutate().header("Authorization", "Bearer " + jwtToken).build();
 
         return chain.filter(exchange.mutate().request(request).build());
     }

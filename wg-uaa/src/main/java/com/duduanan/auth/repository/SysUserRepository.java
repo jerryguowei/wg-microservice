@@ -1,6 +1,6 @@
 package com.duduanan.auth.repository;
 
-import com.duduanan.auth.entity.SysUser;
+import com.duduanan.commons.entity.SysUser;
 import org.springframework.data.repository.CrudRepository;
 
 public interface SysUserRepository extends CrudRepository<SysUser, Integer> {

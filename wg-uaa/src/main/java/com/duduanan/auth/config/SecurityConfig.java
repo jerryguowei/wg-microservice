@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.userDetailsService(userDetailsService());
-        http.authorizeRequests().antMatchers("/error/**").permitAll()
+        http.authorizeRequests().antMatchers("/error/**", "/.well-known/jwks.json").permitAll()
                 .and().authorizeRequests().anyRequest().authenticated()
                 .and().csrf().disable().headers().frameOptions().disable()
                 .and().httpBasic().authenticationEntryPoint(authenticationEntryPoint)
