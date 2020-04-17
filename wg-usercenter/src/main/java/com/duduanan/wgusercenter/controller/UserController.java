@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/users/name/{username}")
-    @PreAuthorize("#oauth2.hasScope('server')")
+    @PreAuthorize("hasAuthority('SCOPE_server')")
     public Object findUserByUsername(@PathVariable("username") String username){
         return null;
     }
