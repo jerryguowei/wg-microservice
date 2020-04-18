@@ -27,3 +27,11 @@ encrypt:
     alias: mykey
     password: password
 
+security:
+  oauth2:
+    client:
+      clientId: user-service
+      clientSecret: password
+      accessTokenUri: http://localhost:8090/api-uaa/oauth/token
+      grant-type: client_credentials
+      scope: server

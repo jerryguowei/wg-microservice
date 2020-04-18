@@ -1,6 +1,7 @@
 package com.duduanan.auth.controller;
 
 import com.duduanan.auth.config.OpenIdConfiguration;
+import com.duduanan.auth.feign.UserCenterFeignClient;
 import com.duduanan.auth.service.AccessTokenExchangeJwtService;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -33,8 +34,14 @@ public class OauthController {
     @Autowired
     private AccessTokenExchangeJwtService accessTokenExchangeJwtService;
 
-    @PostMapping("/home")
+    @Resource
+    private UserCenterFeignClient userCenterFeignClient;
+
+
+    @PostMapping("/.well-known/home")
     public String home() {
+        Object object = userCenterFeignClient.findUserByUsername("jerryguowei");
+        System.out.println(object);
         return "home";
     }
 

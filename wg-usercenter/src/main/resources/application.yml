@@ -12,6 +12,7 @@ spring:
         jwt:
           issuer-uri: http://localhost:8090/api-uaa/
           jwk-set-uri: http://localhost:8090/api-uaa/.well-known/jwks.json
+
 logging:
   level:
     ROOT: DEBUG

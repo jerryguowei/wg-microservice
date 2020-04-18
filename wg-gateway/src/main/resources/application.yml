@@ -45,7 +45,7 @@ spring:
 
 
 wg:
-  client_id: front-end
+  client_id: user-service
   client_secret: password
 #logging:
 #  level:
