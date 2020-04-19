@@ -6,10 +6,8 @@
         <groupId>com.duduanan</groupId>
         <artifactId>wg-micro</artifactId>
         <version>1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>wg-gateway</artifactId>
-    <version>1.0</version>
     <name>wg-gateway</name>
     <description>gateway</description>
 

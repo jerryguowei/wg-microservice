@@ -7,12 +7,10 @@
     <groupId>com.duduanan</groupId>
     <artifactId>wg-micro</artifactId>
     <version>1.0</version>
-    <relativePath/>
   </parent>
-
   <artifactId>wg-commons</artifactId>
-  <version>1.0</version>
   <name>wg-commons</name>
+  <packaging>jar</packaging>
 
   <dependencies>
     <dependency>

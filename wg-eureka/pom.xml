@@ -6,10 +6,8 @@
         <groupId>com.duduanan</groupId>
         <artifactId>wg-micro</artifactId>
         <version>1.0</version>
-        <relativePath/>
     </parent>
     <artifactId>wg-eureka</artifactId>
-    <version>1.0</version>
     <name>wg-eureka</name>
     <description>eureka register server</description>
 

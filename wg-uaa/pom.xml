@@ -6,10 +6,8 @@
         <groupId>com.duduanan</groupId>
         <artifactId>wg-micro</artifactId>
         <version>1.0</version>
-        <relativePath/>
     </parent>
     <artifactId>wg-uaa</artifactId>
-    <version>1.0</version>
     <name>wg-uaa</name>
     <description>Auth Server</description>
 

@@ -6,7 +6,6 @@
         <groupId>com.duduanan</groupId>
         <artifactId>wg-micro</artifactId>
         <version>1.0</version>
-        <relativePath/>
     </parent>
     <artifactId>wg-usercenter</artifactId>
     <version>1.0</version>

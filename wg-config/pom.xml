@@ -6,11 +6,8 @@
         <groupId>com.duduanan</groupId>
         <artifactId>wg-micro</artifactId>
         <version>1.0</version>
-        <relativePath/>
     </parent>
-
     <artifactId>wg-config</artifactId>
-    <version>1.0</version>
     <name>wg-config</name>
     <description>Config Server</description>
     <dependencies>
