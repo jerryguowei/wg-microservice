@@ -22,11 +22,14 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
+        //9abb92ac-339a-4788-815f-3894c8c27070
+
         List<String> authorizationHeaderList = exchange.getRequest().getHeaders().get("Authorization");
         if(authorizationHeaderList == null
                 || authorizationHeaderList.isEmpty()
                 || authorizationHeaderList.size() > 1
-                || !authorizationHeaderList.get(0).startsWith("Bearer")) {
+                || !authorizationHeaderList.get(0).startsWith("Bearer")
+                || !authorizationHeaderList.get(0).matches("Bearer \\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}")) {
             return chain.filter(exchange);
         }
         String authHeader = authorizationHeaderList.get(0);

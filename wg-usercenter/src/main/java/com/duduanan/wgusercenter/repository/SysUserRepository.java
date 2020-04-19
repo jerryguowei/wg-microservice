@@ -1,4 +1,4 @@
-package com.duduanan.auth.repository;
+package com.duduanan.wgusercenter.repository;
 
 import com.duduanan.commons.entity.SysUser;
 import org.springframework.data.repository.CrudRepository;

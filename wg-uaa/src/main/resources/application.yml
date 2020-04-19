@@ -10,7 +10,7 @@ logging:
   level:
     ROOT: INFO
 wg:
-  auth-issuer: http://localhost:${server.port}
+  auth-issuer: http://localhost:8090/api-uaa/
 eureka:
   client:
     healthcheck:
@@ -35,3 +35,9 @@ security:
       accessTokenUri: http://localhost:8090/api-uaa/oauth/token
       grant-type: client_credentials
       scope: server
+
+
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+  MaxAutoRetries: 0

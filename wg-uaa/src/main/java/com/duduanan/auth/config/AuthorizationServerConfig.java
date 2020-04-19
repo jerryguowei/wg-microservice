@@ -3,13 +3,18 @@ package com.duduanan.auth.config;
 import com.duduanan.auth.common.config.KeyStoreProperty;
 import com.duduanan.auth.service.RedisClientDetailsService;
 import com.duduanan.auth.service.SysUserDetailsService;
+import com.duduanan.auth.token.CustomJwtAccessTokenConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.token.TokenService;
@@ -50,7 +55,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private RedisClientDetailsService clientDetailsService;
 
     @Autowired
-    @Qualifier("authenticationManagerBean")
+    @Qualifier("userAuthenticationManagerBean")
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -64,6 +69,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Resource
     private KeyStoreProperty keyStoreProperty;
+
+    @Value("${wg.auth-issuer}")
+    private String authIssuer;
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -81,6 +89,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore()).authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
+                .tokenEnhancer(accessTokenConverter())
                 .exceptionTranslator(webResponseExceptionTranslator);
     }
 
@@ -109,11 +118,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return null;
     }
 
-
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
-
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        JwtAccessTokenConverter converter = new CustomJwtAccessTokenConverter();
         converter.setKeyPair(jwsKeyPair());
         DefaultAccessTokenConverter accessTokenConverter = new CustomAccessTokenConverter();
         accessTokenConverter.setUserTokenConverter(new DefaultUserAuthenticationConverter());
@@ -125,8 +132,30 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         @Override
         public Map<String, ?> convertAccessToken(OAuth2AccessToken token, OAuth2Authentication authentication) {
             Map<String, String>  result = (Map<String, String>) super.convertAccessToken(token, authentication);
-            result.put("iss", "http://localhost:8090/api-uaa/");
+            result.put("iss", authIssuer);
             return result;
         }
+    }
+}
+
+@Configuration
+@Order(101)
+class UserConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private SysUserDetailsService userDetailsService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+    }
+
+    @Override
+    @Bean("userAuthenticationManagerBean")
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }

@@ -28,7 +28,6 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     @Autowired
     private ClientDetailsService clientDetailsService;
 
@@ -36,12 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("customBasicAuthenticationEntryPoint")
     private AuthenticationEntryPoint authenticationEntryPoint;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.userDetailsService(userDetailsService());
         http.authorizeRequests().antMatchers("/error/**", "/.well-known/jwks.json").permitAll()
                 .and().authorizeRequests().anyRequest().authenticated()
                 .and().csrf().disable().headers().frameOptions().disable()
@@ -49,14 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
 
 

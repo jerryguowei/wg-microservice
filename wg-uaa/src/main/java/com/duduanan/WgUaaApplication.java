@@ -1,5 +1,7 @@
 package com.duduanan;
 
+import com.duduanan.auth.constant.AuthConstant;
+import com.duduanan.auth.token.CustomOauth2AccessToken;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;

@@ -3,6 +3,7 @@ package com.duduanan.auth.controller;
 import com.duduanan.auth.config.OpenIdConfiguration;
 import com.duduanan.auth.feign.UserCenterFeignClient;
 import com.duduanan.auth.service.AccessTokenExchangeJwtService;
+import com.duduanan.commons.entity.SysUser;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,8 @@ public class OauthController {
 
     @PostMapping("/.well-known/home")
     public String home() {
-        Object object = userCenterFeignClient.findUserByUsername("jerryguowei");
-        System.out.println(object);
+         SysUser user = userCenterFeignClient.findUserByUsername("jerryguowei");
+        System.out.println(user);
         return "home";
     }
 
