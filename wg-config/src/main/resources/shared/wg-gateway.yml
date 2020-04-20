@@ -1,12 +1,3 @@
-eureka:
-  client:
-    healthcheck:
-      enabled: true
-    serviceUrl:
-      defaultZone: http://user:password@localhost:8762/eureka
-  instance:
-    hostname: localhost
-    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
 management:
   endpoints:
     web:
@@ -18,13 +9,15 @@ management:
     beans:
       enabled: true
 
+server:
+  port: 8090
 
 spring:
   cloud:
     gateway:
       routes:
         - id: auth
-          uri: lb://auth-server
+          uri: lb://wg-uaa
           predicates:
             - Path=/api-uaa/**
           filters:
@@ -32,9 +25,9 @@ spring:
             - PreserveHostHeader
             - name: RequestRateLimiter
               args:
-                  redis-rate-limiter.replenishRate: 10
-                  redis-rate-limiter.burstCapacity: 20
-                  redis-rate-limiter.requestedTokens: 1
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+                redis-rate-limiter.requestedTokens: 1
         - id: user
           uri: lb://wg-usercenter
           predicates:
@@ -43,10 +36,6 @@ spring:
             - StripPrefix=1
             - PreserveHostHeader
 
-
 wg:
   client_id: user-service
   client_secret: password
-#logging:
-#  level:
-#    ROOT: DEBUG

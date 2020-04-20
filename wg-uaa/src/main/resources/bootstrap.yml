@@ -1,12 +1,9 @@
-server:
-  port: 8100
-
 spring:
   application:
-    name: auth-server
+    name: wg-uaa
   cloud:
     config:
       uri: http://localhost:8888
-  profiles:
-    active: dev
+      username: user
+      password: password
 
