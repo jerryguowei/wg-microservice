@@ -6,3 +6,4 @@ spring:
       uri: ${WG_CONFIG_URL}
       username: user
       password: password
+      fail-fast: true
