@@ -1,10 +1,10 @@
 #Datasource config information
 wg:
   datasource:
-    ip: 127.0.0.1
-    username: root
-    password: my-secret-pw
-  auth-issuer: http://localhost:8090/api-uaa/
+    ip: ${WG_DATABASE_IP}
+    username: ${WG_DATABASE_USERNAME}
+    password: ${WG_DATABASE_PASSWORD}
+  auth-issuer: ${WG_DOMAIN_NAME}/api-uaa/
 
 
 logging:
@@ -20,7 +20,7 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://user:password@localhost:8762/eureka
+      defaultZone: http://user:password@wg-eureka:8762/eureka
   instance:
     hostname: localhost
     instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}

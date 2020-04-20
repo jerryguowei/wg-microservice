@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/api/**").permitAll()
+        http.authorizeRequests().antMatchers("/actuator/**").permitAll()
                 .and().authorizeRequests().anyRequest().authenticated()
                 .and().oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
     }

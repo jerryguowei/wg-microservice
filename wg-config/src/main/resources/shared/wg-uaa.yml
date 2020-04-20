@@ -20,7 +20,7 @@ security:
     client:
       clientId: user-service
       clientSecret: password
-      accessTokenUri: http://localhost:8090/api-uaa/oauth/token
+      accessTokenUri: ${wg.auth-issuer}oauth/token
       grant-type: client_credentials
       scope: server
 

@@ -1,4 +1,3 @@
-
 spring:
   datasource:
     url: jdbc:mysql://${wg.datasource.ip}:3306/wg-db
@@ -11,8 +10,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8090/api-uaa/
-          jwk-set-uri: http://localhost:8090/api-uaa/.well-known/jwks.json
-
+          issuer-uri: ${wg.auth-issuer}
+          jwk-set-uri: ${wg.auth-issuer}.well-known/jwks.json
 server:
   port: 8200

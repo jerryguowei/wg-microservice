@@ -3,9 +3,10 @@ spring:
     name: wg-eureka
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: ${WG_CONFIG_URL}
       username: user
       password: password
+      fail-fast: true
 
 
 

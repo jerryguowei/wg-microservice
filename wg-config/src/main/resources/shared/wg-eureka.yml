@@ -10,8 +10,6 @@ eureka:
   client:
     fetch-registry: false
     register-with-eureka: false
-    serviceUrl:
-      defaultZone: http://user:password@localhost:8762/eureka
   server:
     enable-self-preservation: true
     renewal-percent-threshold: 0.45

@@ -3,7 +3,6 @@ spring:
     name: wg-gateway
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: ${WG_CONFIG_URL}
       username: user
       password: password
-
