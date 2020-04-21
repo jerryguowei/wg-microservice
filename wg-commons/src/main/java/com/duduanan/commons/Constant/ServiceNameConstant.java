@@ -9,4 +9,6 @@ public interface ServiceNameConstant {
 
     String GATE_WAY = "wg-gateway";
 
+    String WG_UAA = "wg-uaa";
+
 }

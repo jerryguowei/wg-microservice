@@ -14,7 +14,8 @@ logging:
 spring:
   jpa:
     show-sql: true
-
+  redis:
+    host: ${WG_REDIS_HOST}
 eureka:
   client:
     healthcheck:
@@ -22,7 +23,6 @@ eureka:
     serviceUrl:
       defaultZone: http://user:password@wg-eureka:8762/eureka
   instance:
-    hostname: localhost
     instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
 
 

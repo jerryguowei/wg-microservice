@@ -15,17 +15,62 @@ services:
     environment: 
       WG_CONFIG_URL: http://wg-config:8888
       WG_DOMAIN_NAME: "http://wg-gateway:8080"
-  # wg-uaa:
-  #   image: wg-uaa:1.0
-  #   environment: 
-  #     WG_CONFIG_URL: http://wg-config:8888
-  #     WG_DOMAIN_NAME: "http://wg-gateway:8080"
-  #     WG_DATABASE_IP: wg-sql
-  #     WG_DATABASE_USERNAME: root
-  #     WG_DATABASE_PASSWORD: password
-  # wg-sql:
-  #   image: mysql:8.0.19
-  #   environment: 
-  #    MYSQL_ROOT_PASSWORD: password
-  # wg-reids:
-  #   image: redis:6.0-rc
+      WG_HOST_NAME: localhost
+  wg-gateway:
+    image: wg-gateway:1.0
+    ports: 
+      - 8080:8080
+    restart: on-failure
+    depends_on: 
+      - wg-config
+      - wg-eureka
+    environment: 
+      WG_CONFIG_URL: http://wg-config:8888
+      WG_HOST_NAME: localhost
+  wg-uaa:
+    image: wg-uaa:1.0
+    depends_on: 
+      - wg-config
+      - wg-eureka
+      - wg-sql
+      - wg-redis
+    restart: on-failure
+    environment: 
+      WG_CONFIG_URL: http://wg-config:8888
+      WG_DOMAIN_NAME: "http://wg-gateway:8080"
+      WG_HOST_NAME: wg-gateway
+      WG_DATABASE_IP: wg-sql
+      WG_DATABASE_USERNAME: root
+      WG_DATABASE_PASSWORD: password
+      WG_REDIS_HOST: wg-redis
+  wg-usercenter:
+    image: wg-usercenter:1.0
+    depends_on: 
+      - wg-config
+      - wg-eureka
+      - wg-sql
+      - wg-redis
+    restart: on-failure
+    environment: 
+      WG_CONFIG_URL: http://wg-config:8888
+      WG_DOMAIN_NAME: "http://wg-gateway:8080"
+      WG_HOST_NAME: wg-gateway
+      WG_DATABASE_IP: wg-sql
+      WG_DATABASE_USERNAME: root
+      WG_DATABASE_PASSWORD: password
+      WG_REDIS_HOST: wg-redis
+  wg-sql:
+    image: mysql:8.0.19
+    ports: 
+      - 3306:3306
+    environment: 
+      MYSQL_ROOT_PASSWORD: password
+    volumes: 
+      - "mysql-data:/var/lib/mysql"
+  wg-redis:
+    image: redis:6.0-rc
+    volumes: 
+      - "redis-data:/data"
+volumes:
+  mysql-data:
+  redis-data:
