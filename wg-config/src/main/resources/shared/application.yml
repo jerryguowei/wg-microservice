@@ -21,8 +21,9 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://user:password@wg-eureka:8762/eureka
+      defaultZone: ${WG_EUREKA_URL}  #http://user:password@wg-eureka:8762/eureka
   instance:
+    hostname: ${WG_HOST_NAME}
     instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
 
 

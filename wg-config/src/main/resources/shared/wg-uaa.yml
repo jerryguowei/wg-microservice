@@ -23,9 +23,6 @@ security:
       accessTokenUri: ${wg.auth-issuer}oauth/token
       grant-type: client_credentials
       scope: server
-eureka:
-  instance:
-    hostname: {WG_HOST_NAME}
 ribbon:
   ReadTimeout: 5002
   ConnectTimeout: 5000

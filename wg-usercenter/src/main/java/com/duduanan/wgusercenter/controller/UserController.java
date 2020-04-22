@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class UserController {
@@ -26,7 +23,7 @@ public class UserController {
     private SysUserRepository sysUserRepository;
 
     @GetMapping("/users/current")
-    public String getLoginUserInfo(JwtAuthenticationToken jwtAuthenticationToken,@AuthenticationPrincipal Jwt jwtPrinciapl) {
+    public String getLoginUserInfo(JwtAuthenticationToken jwtAuthenticationToken, @AuthenticationPrincipal Jwt jwtPrinciapl) {
         logger.info(jwtPrinciapl.getClaim("user_name"));
         return "user info";
     }

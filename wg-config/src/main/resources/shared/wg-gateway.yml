@@ -35,9 +35,6 @@ spring:
           filters:
             - StripPrefix=1
             - PreserveHostHeader
-eureka:
-  instance:
-    hostname: {WG_HOST_NAME}
 wg:
   client_id: user-service
   client_secret: password

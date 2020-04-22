@@ -10,11 +10,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${wg.auth-issuer}
-          jwk-set-uri: ${wg.auth-issuer}.well-known/jwks.json
+          public-key-location: classpath:my-key.pub
+#          issuer-uri: ${wg.auth-issuer}
+#          jwk-set-uri: ${wg.auth-issuer}.well-known/jwks.json
 server:
   port: 8200
-
-eureka:
-  instance:
-    hostname: {WG_HOST_NAME}
