@@ -5,4 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SysUserRepository extends CrudRepository<SysUser, Integer> {
     SysUser findByUsername(String username);
+
+    SysUser save(SysUser sysUser);
+
+    int deleteSysUsersByUsername(String username);
 }
