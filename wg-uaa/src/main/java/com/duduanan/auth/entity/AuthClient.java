@@ -1,5 +1,7 @@
 package com.duduanan.auth.entity;
 
+import org.hibernate.type.BasicTypeRegistry;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 public class AuthClient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column
     private String clientId;
@@ -47,11 +49,11 @@ public class AuthClient {
     @JoinTable(name = "auth_client_client_role", joinColumns = {@JoinColumn(name = "client_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<ClientRole> clientRoles = new ArrayList<>();
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

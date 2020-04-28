@@ -9,7 +9,7 @@ import java.util.List;
 public class SysUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @Column
     private String username;
@@ -39,11 +39,11 @@ public class SysUser {
     @JoinTable(name = "sys_user_user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<UserRole> authorityRoles = new ArrayList<>();
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
