@@ -18,3 +18,10 @@ values('user-service','Manage User','$2y$10$06xXY/0DPVGrWtLSV66V9.6LE0nEYJCW8bBU
 insert into `client_role`(`role_name`) values ('ROLE_CLIENT');
 
 insert into `auth_client_client_role` (`role_id`,`client_id`) values (1,1);
+
+
+INSERT INTO `sys_menu`(`id`, `parent_id`,`name`, `path`, `css_icon`, `order`,`visible`, `type`) VALUES (1, 0, 'System Management', '', 'medkit-outline', 1, 1, 1);
+INSERT INTO `sys_menu`(`id`, `parent_id`,`name`, `path`, `css_icon`, `order`,`visible`, `type`) VALUES (2, 1, 'User Management', '', 'medkit-outline', 2, 1, 1);
+INSERT INTO `sys_menu`(`id`, `parent_id`,`name`, `path`, `css_icon`, `order`,`visible`, `type`) VALUES (3, 1, 'Client Management', '', 'medkit-outline', 3, 1, 1);
+INSERT INTO `sys_menu`(`id`, `parent_id`,`name`, `path`, `css_icon`, `order`,`visible`, `type`) VALUES (4, 1, 'My Profile', '', 'medkit-outline', 4, 1, 1);
+INSERT INTO `sys_menu`(`id`, `parent_id`,`name`, `path`, `css_icon`, `order`,`visible`, `type`) VALUES (5, 1, 'Menu Management', '', 'medkit-outline', 2, 1, 1);

@@ -71,3 +71,23 @@ create table `auth_client_client_role` (
     constraint foreign key(`role_id`) references `client_role`(`role_id`) ON DELETE CASCADE,
     constraint foreign key(`client_id`) references `auth_client`(`id`) ON DELETE CASCADE
 ) engine = InnoDB;
+
+DROP table if exists `sys_menu`;
+CREATE TABLE `sys_menu` (
+	`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `parent_id` int NOT NULL,
+    `name` varchar(256) NOT NULL,
+    `path` varchar(256) NOT NULL,
+    `css_icon` varchar(256) DEFAULT NULL,
+    `order` int NOT NULL,
+    `create_time` timestamp DEFAULT CURRENT_TIMESTAMP,
+    `update_time` timestamp DEFAULT current_timestamp ON UPDATE CURRENT_TIMESTAMP,
+    `visible` tinyint default 1,
+    `type` tinyint NOT NULL
+    #constraint foreign key(`parent_id`) references `sys_menu`(`id`) ON DELETE CASCADE
+) engine=InnoDB;
+
+
+
+
+
