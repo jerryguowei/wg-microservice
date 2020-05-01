@@ -1,6 +1,7 @@
 package com.duduanan.wgusercenter.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -19,8 +20,8 @@ public class SysMenu {
     private Date updateTime;
     private boolean visible;
     private int type;
-    @OneToMany
-    private List<SysMenu> sysMenuList;
+    @Transient
+    private List<SysMenu> childMenuList = new ArrayList<>();
 
     public SysMenu() {
 
@@ -106,12 +107,12 @@ public class SysMenu {
         this.type = type;
     }
 
-    public List<SysMenu> getSysMenuList() {
-        return sysMenuList;
+    public List<SysMenu> getChildMenuList() {
+        return childMenuList;
     }
 
-    public void setSysMenuList(List<SysMenu> sysMenuList) {
-        this.sysMenuList = sysMenuList;
+    public void setChildMenuList(List<SysMenu> childMenuList) {
+        this.childMenuList = childMenuList;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.duduanan.wgusercenter.controller;
 
 import com.duduanan.wgusercenter.entity.SysMenu;
 import com.duduanan.wgusercenter.repository.SysMenuRepository;
+import com.duduanan.wgusercenter.utils.UserCenterUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,10 @@ public class MenuController {
         List<SysMenu> list = sysMenuRepository.findAll();
         return  list;
     }
-//
-//    @GetMapping("/current")
-//    public List<SysMenu>
+
+    @GetMapping("/current")
+    public List<SysMenu> getCurrentMenu(){
+        List<SysMenu> list = sysMenuRepository.findAll();
+        return UserCenterUtils.buildTreeMenu(list);
+    }
 }
