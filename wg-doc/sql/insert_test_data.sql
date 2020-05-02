@@ -1,5 +1,5 @@
-insert into `user_role`(`role_name`) values('ROLE_USER');
-insert into `user_role`(`role_name`) values ('ROLE_ADMIN');
+insert into `user_role`(`role_id`, `role_name`) values(1,'ROLE_ADMIN');
+insert into `user_role`(`roled_id`, `role_name`) values (2, 'ROLE_USER');
 
 
 insert into  `sys_user` (`username`, `email`,`password`,`first_name`,`last_name`,`active`) values('jerryguowei','jerryguowei@gmail.com','$2y$10$06xXY/0DPVGrWtLSV66V9.6LE0nEYJCW8bBUc3P1LB9Z9wC/ZRYYu','WEI','GUO', 1);
@@ -25,3 +25,13 @@ INSERT INTO `sys_menu`(`id`, `parent_id`,`name`, `path`, `css_icon`, `order`,`vi
 INSERT INTO `sys_menu`(`id`, `parent_id`,`name`, `path`, `css_icon`, `order`,`visible`, `type`) VALUES (3, 1, 'Client Management', '', 'medkit-outline', 3, 1, 1);
 INSERT INTO `sys_menu`(`id`, `parent_id`,`name`, `path`, `css_icon`, `order`,`visible`, `type`) VALUES (4, 1, 'My Profile', '', 'medkit-outline', 4, 1, 1);
 INSERT INTO `sys_menu`(`id`, `parent_id`,`name`, `path`, `css_icon`, `order`,`visible`, `type`) VALUES (5, 1, 'Menu Management', '', 'medkit-outline', 2, 1, 1);
+
+
+
+INSERT INTO `user_role_menu`(`role_id`,`menu_id`)  VALUES (1,1);
+INSERT INTO `user_role_menu`(`role_id`,`menu_id`)  VALUES (1,2);
+INSERT INTO `user_role_menu`(`role_id`,`menu_id`)  VALUES (1,3);
+INSERT INTO `user_role_menu`(`role_id`,`menu_id`)  VALUES (1,4);
+INSERT INTO `user_role_menu`(`role_id`,`menu_id`)  VALUES (1,5);
+
+INSERT INTO `user_role_menu`(`role_id`,`menu_id`)  VALUES (2,4);

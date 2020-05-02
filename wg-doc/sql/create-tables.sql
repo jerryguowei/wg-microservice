@@ -88,6 +88,15 @@ CREATE TABLE `sys_menu` (
 ) engine=InnoDB;
 
 
+DROP TABLE IF EXISTS `user_role_menu`;
+CREATE TABLE `user_role_menu` (
+   `role_id` int  NOT NULL,
+   `menu_id` int NOT NULL,
+    CONSTRAINT PRIMARY KEY (`role_id`, `menu_id`),
+    CONSTRAINT FOREIGN KEY(`role_id`) REFERENCES `user_role`(`role_id`),
+    CONSTRAINT FOREIGN KEY(`menu_id`) REFERENCES `sys_menu`(`id`)
+) ENGINE=InnoDB;
+
 
 
 

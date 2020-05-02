@@ -7,15 +7,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 
 //@Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig  {
     private final Log logger = LogFactory.getLog(SecurityConfig.class);
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/actuator/**").permitAll()
-                .and().authorizeRequests().anyRequest().authenticated()
-                .and().oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests().antMatchers("/actuator/**").permitAll()
+//                .and().authorizeRequests().anyRequest().authenticated()
+//                .and().oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+//    }
 
 
 
