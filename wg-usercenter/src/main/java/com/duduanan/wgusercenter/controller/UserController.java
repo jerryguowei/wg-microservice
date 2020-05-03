@@ -1,6 +1,7 @@
 package com.duduanan.wgusercenter.controller;
 
 import com.duduanan.commons.entity.SysUser;
+import com.duduanan.wgusercenter.annotation.LoginUser;
 import com.duduanan.wgusercenter.repository.SysUserRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,9 +24,9 @@ public class UserController {
     private SysUserRepository sysUserRepository;
 
     @GetMapping("/users/current")
-    public String getLoginUserInfo(JwtAuthenticationToken jwtAuthenticationToken, @AuthenticationPrincipal Jwt jwtPrinciapl) {
-        logger.info(jwtPrinciapl.getClaim("user_name"));
-        return "user info";
+    public SysUser getLoginUserInfo(@LoginUser SysUser sysUser) {
+        logger.info(sysUser.getUsername());
+        return sysUser;
     }
 
     @GetMapping(value = "/users/name/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
