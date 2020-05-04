@@ -1,4 +1,4 @@
-package com.duduanan.wgusercenter.entity;
+package com.duduanan.commons.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;

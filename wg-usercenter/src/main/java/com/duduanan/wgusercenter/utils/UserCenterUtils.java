@@ -1,10 +1,9 @@
 package com.duduanan.wgusercenter.utils;
 
-import com.duduanan.wgusercenter.entity.SysMenu;
+import com.duduanan.commons.entity.SysMenu;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class UserCenterUtils {
 

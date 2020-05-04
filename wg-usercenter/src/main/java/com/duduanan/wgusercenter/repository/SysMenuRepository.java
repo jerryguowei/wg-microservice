@@ -1,6 +1,6 @@
 package com.duduanan.wgusercenter.repository;
 
-import com.duduanan.wgusercenter.entity.SysMenu;
+import com.duduanan.commons.entity.SysMenu;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
