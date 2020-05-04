@@ -10,6 +10,10 @@ public class Result<T>  implements Serializable {
     private Integer code;
     private String message;
 
+    public Result() {
+
+    }
+
     public Result(T data, Integer code, String message){
         this.data = data;
         this.code = code;
