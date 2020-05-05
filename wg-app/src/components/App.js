@@ -1,14 +1,15 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
-
-Router
+import { Router, Route, Switch } from 'react-router-dom';
+import history from '../history';
 
 const App = () => {
 
     return (
-        <Router>
+        <Router history={history}>
             <div>
-                <Route path="/" exact component/>
+                <Switch>
+                    <Route path="/" exact component/>
+                </Switch>
             </div>
         </Router>
     )
