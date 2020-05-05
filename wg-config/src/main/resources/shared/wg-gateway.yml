@@ -35,6 +35,12 @@ spring:
           filters:
             - StripPrefix=1
             - PreserveHostHeader
+        - id: front-end
+          uri: http://localhost:3000/
+          predicates:
+            - Path=/**
+          filters:
+            - PreserveHostHeader
 wg:
   client_id: user-service
   client_secret: password
