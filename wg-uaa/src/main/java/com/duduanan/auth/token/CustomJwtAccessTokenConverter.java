@@ -30,6 +30,10 @@ public class CustomJwtAccessTokenConverter extends JwtAccessTokenConverter {
         else {
             tokenId = (String) info.get(TOKEN_ID);
         }
+        // custom
+        info.put("expires_at", result.getExpiration().getTime());
+        //
+
         result.setAdditionalInformation(info);
         result.setValue(encode(result, authentication));
         OAuth2RefreshToken refreshToken = result.getRefreshToken();
