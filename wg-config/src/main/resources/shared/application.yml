@@ -16,6 +16,8 @@ spring:
     show-sql: true
   redis:
     host: ${WG_REDIS_HOST}
+  jackson:
+    property-naming-strategy: SNAKE_CASE
 eureka:
   client:
     healthcheck:

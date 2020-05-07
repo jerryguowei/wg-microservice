@@ -6,6 +6,11 @@ spring:
       uri: ${WG_CONFIG_URL}
       username: user
       password: password
+#  gson:
+#    field-naming-policy: lower_case_with_underscores
+#  http:
+#    converters:
+#      preferred-json-mapper: gson
 #logging:
 #  level:
 #    ROOT: DEBUG

@@ -1,8 +1,8 @@
 package com.duduanan.wgusercenter.controller;
 
-import com.duduanan.commons.entity.SysMenu;
 import com.duduanan.commons.entity.SysUser;
 import com.duduanan.wgusercenter.annotation.LoginUser;
+import com.duduanan.wgusercenter.dto.UserInfoDTO;
 import com.duduanan.wgusercenter.repository.SysUserRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -27,8 +25,11 @@ public class UserController {
 
     @GetMapping("/users/current")
     @Transactional
-    public SysUser getLoginUserInfo(@LoginUser SysUser sysUser) {
-        return sysUser;
+    public UserInfoDTO getLoginUserInfo(@LoginUser SysUser sysUser) {
+        if(sysUser != null) {
+            return new UserInfoDTO(sysUser);
+        }
+        return new UserInfoDTO();
     }
 
     @GetMapping(value = "/users/name/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
