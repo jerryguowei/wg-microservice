@@ -7,3 +7,13 @@ spring:
       username: user
       password: password
       fail-fast: true
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+
+
