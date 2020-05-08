@@ -1,6 +1,13 @@
 import { userApi } from "../apis/userApi";
 
- export async function login(username, password) {
+
+export const userServices = {
+    login,
+    logout,
+    refreshToken
+};
+
+ async function login(username, password) {
     var bodyFormData = new FormData();
     bodyFormData.set("username", username);
     bodyFormData.set("password", password);
@@ -33,9 +40,37 @@ import { userApi } from "../apis/userApi";
 }
 
 
+function logout() {
+
+    //revoke the token.
+    localStorage.removeItem("user_info");
+    localStorage.removeItem("user_info");
+}
+
+
+async function refreshToken(refreshToken){
+    var bodyFormData = new FormData();
+    bodyFormData.set("refresh_token", refreshToken);
+    bodyFormData.set("grant_type", "refresh_token");
+
+    let tokenResponse = await userApi.userAxios({
+        method: 'post',
+        url: '/api-uaa/oauth/token',
+        data: bodyFormData,
+        auth: {
+            username: "front-end",
+            password: "password"
+        }
+    });
+    const tokenInfo = tokenResponse.data;
+    localStorage.setItem("token_info", JSON.stringify(tokenInfo));
+    return tokenInfo;
+}
+
+
 export function testLogin(username, password) {
 
-    let promise = login(username, password);
+    let promise = refreshToken("cbf933a0-01be-4369-a0c6-19ea34b527a0")   //login(username, password);
     promise.then((d1)=>{
         console.log(d1);
     }).catch(e1=>{
